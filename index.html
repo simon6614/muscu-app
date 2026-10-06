@@ -1,1 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#16a34a">
 
+  <title>Muscu V1</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    header {
+      background: #16a34a;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      opacity: 0.9;
+    }
+
+    main {
+      max-width: 600px;
+      margin: auto;
+      padding: 16px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
+
+    .exercise-title {
+      margin: 0 0 6px;
+      font-size: 20px;
+    }
+
+    .details {
+      color: #6b7280;
+      margin-bottom: 14px;
+    }
+
+    .sets {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .set {
+      text-align: center;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      padding: 8px 4px;
+    }
+
+    .set label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    input[type="checkbox"] {
+      width: 24px;
+      height: 24px;
+      accent-color: #16a34a;
+    }
+
+    .progress {
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .timer {
+      background: #dcfce7;
+      color: #166534;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .timer-display {
+      font-size: 48px;
+      font-weight: bold;
+      margin: 10px 0 16px;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 4px;
+    }
+
+    .primary {
+      background: #16a34a;
+      color: white;
+    }
+
+    .secondary {
+      background: white;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+
+    @media (max-width: 400px) {
+      .sets {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>💪 Muscu</h1>
+  <p>Haut du corps</p>
+</header>
+
+<main>
+
+  <div class="progress">
+    Progression : <span id="progress">0 / 12</span>
+  </div>
+
+  <div class="timer">
+    <div>⏱️ Récupération</div>
+    <div class="timer-display" id="timer">01:30</div>
+
+    <button class="primary" onclick="startTimer()">Démarrer</button>
+    <button class="secondary" onclick="pauseTimer()">Pause</button>
+    <button class="secondary" onclick="resetTimer()">Réinitialiser</button>
+  </div>
+
+  <div class="card">
+    <h2 class="exercise-title">Développé couché</h2>
+    <div class="details">4 séries · 8–10 répétitions · 1:30 récupération</div>
+
+    <div class="sets">
+      <div class="set">
+        <label>Série 1</label>
+        <input type="checkbox" onchange="completeSet()">
+      </div>
+
+      <div class="set">
+        <label>Série 2</label>
+        <input type="checkbox" onchange="completeSet()">
+      </div>
+
+      <div class="set">
+        <label>Série 3</label>
+        <input type="checkbox" onchange="completeSet()">
+      </div>
+
+      <div class="set">
+        <label>Série 4</label>
+        <input type="checkbox" onchange="completeSet()">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="exercise-title">Tractions</h2>
+    <div class="details">4 séries · 6–10 répétitions · 2:00 récupération</div>
+
+    <div class="sets">
+      <div class="set">
+        <label>Série 1</label>
+        <input type="checkbox" onchange="completeSet()">
+      </div>
+
+      <div class="set">
+        <label>Série 2</label>
+        <input type="checkbox" onchange="completeSet()">
+      </div>
+
+      <div class="set">
+        <label>Série 3</label>
+        <input type="checkbox" onchange="completeSet()">
+      </div>
+
+      <div class="set">
+        <label>Série 4</label>
+        <input type="checkbox" onchange="completeSet()">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="exercise-title">Développé épaules</h2>
+    <div class="details">4 séries · 8–12 répétitions · 1:30 récupération</div>
+
+    <div class="sets">
+      <div class="set">
+        <label>Série 1</label>
+        <input type="checkbox" onchange="completeSet()">
+      </div>
+
+      <div class="set">
+        <label>Série 2</label>
+        <input type="checkbox" onchange="completeSet()">
+      </div>
+
+      <div class="set">
+        <label>Série 3</label>
+        <input type="checkbox" onchange="completeSet()">
+      </div>
+
+      <div class="set">
+        <label>Série 4</label>
+        <input type="checkbox" onchange="completeSet()">
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+
+  let totalSeconds = 90;
+  let remainingSeconds = totalSeconds;
+  let timerInterval = null;
+
+  function updateTimer() {
+    const minutes = Math.floor(remainingSeconds / 60);
+    const seconds = remainingSeconds % 60;
+
+    document.getElementById("timer").textContent =
+      String(minutes).padStart(2, "0") + ":" +
+      String(seconds).padStart(2, "0");
+  }
+
+  function startTimer() {
+    if (timerInterval !== null) return;
+
+    timerInterval = setInterval(() => {
+
+      if (remainingSeconds > 0) {
+        remainingSeconds--;
+        updateTimer();
+      } else {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        alert("⏱️ Récupération terminée !");
+      }
+
+    }, 1000);
+  }
+
+  function pauseTimer() {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+
+  function resetTimer() {
+    pauseTimer();
+    remainingSeconds = totalSeconds;
+    updateTimer();
+  }
+
+  function completeSet() {
+    const checked = document.querySelectorAll(
+      'input[type="checkbox"]:checked'
+    ).length;
+
+    document.getElementById("progress").textContent =
+      checked + " / 12";
+
+    resetTimer();
+  }
+
+  updateTimer();
+
+</script>
+
+</body>
+</html>
